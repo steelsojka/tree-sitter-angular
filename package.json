@@ -1,0 +1,25 @@
+{
+  "name": "tree-sitter-angular",
+  "version": "1.0.0",
+  "description": "Treesitter grammar for the Angular framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steelsojka/tree-sitter-angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steelsojka/tree-sitter-angular/issues"
+  },
+  "homepage": "https://github.com/steelsojka/tree-sitter-angular#readme",
+  "dependencies": {
+    "nan": "^2.14.2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.17.2"
+  }
+}
