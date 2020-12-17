@@ -11,7 +11,6 @@ module.exports = grammar({
       $.structural_declaration,
       $._any_expression,
       $.assignment_expression),
-    _declaration_statement: $ => "let",
     _any_expression: $ => choice(
       $.binary_expression,
       $.unary_expression,
@@ -37,9 +36,9 @@ module.exports = grammar({
     pipe_call: $ => seq(field("name", $.identifier), optional(field("arguments", $.pipe_arguments))),
     pipe_arguments: $ => repeat1($._pipe_argument),
     member_expression: $ => seq(
-      $._primitive,
+      field("object", $._primitive),
       choice(".", "?.", "!."),
-      $.identifier),
+      field("property", $.identifier)),
     arguments: $ => seq(
       choice(
         $._primitive,
@@ -50,7 +49,22 @@ module.exports = grammar({
     _pipe_argument: $ => seq(":", $._primitive),
     _single_quote: $ => "'",
     _double_quote: $ => "\"",
-    _binary_op: $ => choice("+", "-", "/", "*", "%"),
+    _binary_op: $ => choice(
+      "+",
+      "-",
+      "/",
+      "*",
+      "%",
+      "==",
+      "===",
+      "!=",
+      "!==",
+      "&&",
+      "||",
+      "<",
+      "<=",
+      ">",
+      ">="),
     assignment_expression: $ => seq(
       field("name", $.identifier),
       "=",
@@ -90,7 +104,7 @@ module.exports = grammar({
         field("name", $.identifier),
           optional($._alias))),
     structural_declaration: $ => seq(
-      $._declaration_statement,
+      "let",
       seq(
         $.structural_assignment,
         repeat(seq(choice(";", ","), $.structural_assignment))))

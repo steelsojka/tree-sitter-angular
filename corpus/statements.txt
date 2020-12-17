@@ -132,11 +132,11 @@ $any(this).prop
 (program
   (expression
     (member_expression
-      (call_expression
+      object: (call_expression
         function: (identifier)
         arguments: (arguments
           (identifier)))
-      (identifier))))
+      property: (identifier))))
 
 =====================
 Structural assignment
@@ -282,3 +282,52 @@ Array expressions
             pipes: (pipe_sequence
               (pipe_call
                 name: (identifier)))))))))
+
+==================
+Binary expressions
+==================
+
+someValue == 123
+someValue != 123
+someValue === 123
+someValue !== 123
+someValue && 123
+someValue || 123
+
+---
+
+(program
+  (binary_expression
+    left: (identifier)
+    right: (number))
+  (binary_expression
+    left: (identifier)
+    right: (number))
+  (binary_expression
+    left: (identifier)
+    right: (number))
+  (binary_expression
+    left: (identifier)
+    right: (number))
+  (binary_expression
+    left: (identifier)
+    right: (number))
+  (binary_expression
+    left: (identifier)
+    right: (number)))
+
+==================
+Member Expressions
+==================
+
+test?.blorg.pizza
+
+---
+
+(program
+  (expression
+    (member_expression
+      object: (member_expression
+        object: (identifier)
+        property: (identifier))
+      property: (identifier))))
